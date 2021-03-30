@@ -28,23 +28,23 @@ public class Tarefa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private String titulo;
 	
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private String descricao;
 	
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private String responsavel;
 	
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private Prioridade prioridade;
 	
 	@Temporal(TemporalType.DATE)
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private Date deadline;
 	
-//	@Column(nullable = false)
+	@Column(nullable = false)
 	private Situacao concluida = Situacao.EM_ANDAMENTO;
 	
 	public Prioridade[] getPrioridades() {

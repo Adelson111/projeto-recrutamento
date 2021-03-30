@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Projeto ESIG</title>
@@ -38,6 +39,11 @@
 			<f:selectItems value="#{tarefaBean.tarefa.prioridades}" var="p"
 				itemLabel="#{p}" itemValue="#{p}" />
 		</h:selectOneMenu>
+		<h:outputLabel value="Deadline: " styleClass="campo" />
+		<h:inputText id="data" value="#{tarefaBean.tarefa.deadline}" rendered="true"
+			class="form-control" a:placeholder="aaaa-mm-dd">
+			<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+		</h:inputText>
 		<br />
 		<h:commandButton value="Editar" action="#{tarefaBean.atualizar}"
 			style=" margin-top: 20px;" class="btn btn-primary" />

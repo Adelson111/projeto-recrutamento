@@ -5,7 +5,7 @@ Projeto em JSF para recrutamento na empresa ESIG Software.
 ## Item Concluidos
 
 
-> - [x] Criar  uma tarefa
+- [x] Criar  uma tarefa
 - [x]  Atualizar a tarefa
 - [x] Remover a tarefa
 - [x] Listar tarefas

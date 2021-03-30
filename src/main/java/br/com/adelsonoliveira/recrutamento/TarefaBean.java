@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import br.com.adelsonoliveira.recrutamento.dao.DaoGeneric;
 import br.com.adelsonoliveira.recrutamento.enums.Situacao;
 import br.com.adelsonoliveira.recrutamento.model.Tarefa;
 
+@SessionScoped
 @ManagedBean(name = "tarefaBean")
 public class TarefaBean {
 
@@ -22,9 +24,21 @@ public class TarefaBean {
 		tarefas = daoGeneric.consultar(Tarefa.class);
 	}
 	
+	public String cadastrar() {
+		tarefa = new Tarefa();
+		return "cadastar-tarefa?faces-redirect=true";
+	}
+	
 	public String salvar() {
 		daoGeneric.salvar(tarefa);
 		tarefa = new Tarefa();
+		return "index?faces-redirect=true";
+	}
+	
+	public String atualizar() {
+		daoGeneric.atualizar(tarefa);
+		tarefa = new Tarefa();
+		this.carregarTarefas();
 		return "index?faces-redirect=true";
 	}
 	
@@ -38,6 +52,11 @@ public class TarefaBean {
 		this.carregarTarefas();
 		return "";
 	}
+	
+	public String editar(Long id){
+		tarefa = daoGeneric.selecionar(tarefa, Long.valueOf(id));
+        return "atualizar-tarefa?faces-redirect=true";
+    }
 	
 	public String remover(Long id) {
 		daoGeneric.remover(tarefa, id);

@@ -21,17 +21,26 @@ public class TarefaBean {
 	
 	@PostConstruct
 	public void carregarTarefas() {
-		tarefas = daoGeneric.consultar(Tarefa.class);
+//		tarefas = daoGeneric.consultar(Tarefa.class);
+		tarefas.clear();
+		List<Tarefa> listaTarefas = daoGeneric.consultar(Tarefa.class);
+		for(Tarefa tarefa: listaTarefas){
+			if(tarefa.getConcluida().equals(Situacao.EM_ANDAMENTO)) {
+				tarefas.add(tarefa);
+			}
+		}
 	}
 	
 	public String cadastrar() {
 		tarefa = new Tarefa();
+		this.carregarTarefas();
 		return "cadastar-tarefa?faces-redirect=true";
 	}
 	
 	public String salvar() {
 		daoGeneric.salvar(tarefa);
 		tarefa = new Tarefa();
+		this.carregarTarefas();
 		return "index?faces-redirect=true";
 	}
 	
